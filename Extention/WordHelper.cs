@@ -2,7 +2,7 @@
 using MiniSoftware;
 using System.Text;
 
-namespace PloliticalScienceSystemApi.Extention
+namespace LibraryManageSystemApi.Extention
 {
     public class WordHelper
     {

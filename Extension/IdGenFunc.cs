@@ -1,8 +1,8 @@
 ﻿using IdGen;
-using PloliticalScienceSystemApi.GlobalSetting;
+using LibraryManageSystemApi.GlobalSetting;
 using System.Reflection.Emit;
 
-namespace PloliticalScienceSystemApi.Extension
+namespace LibraryManageSystemApi.Extension
 {
     public static class IdGenFunc
     {

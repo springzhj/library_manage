@@ -1,4 +1,4 @@
-﻿namespace PloliticalScienceSystemApi.ApiRequsetCheck
+﻿namespace LibraryManageSystemApi.ApiRequsetCheck
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class RequeiredParamAttribute : Attribute

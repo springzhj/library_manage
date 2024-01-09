@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Text.RegularExpressions;
 using System.Text;
 
-namespace PloliticalScienceSystemApi.Extension
+namespace LibraryManageSystemApi.Extension
 {
     public static class HttpContextExtend
     {

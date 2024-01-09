@@ -1,7 +1,7 @@
-﻿using PloliticalScienceSystemApi.ApiRequsetCheck;
-using PloliticalScienceSystemApi.Model;
+﻿using LibraryManageSystemApi.ApiRequsetCheck;
+using LibraryManageSystemApi.Model;
 
-namespace PloliticalScienceSystemApi.Controllers.Usersys.Dto
+namespace LibraryManageSystemApi.Controllers.Usersys.Dto
 {
     public class UsersysEnrollDto
     {

@@ -1,8 +1,8 @@
 ﻿using DocumentFormat.OpenXml.InkML;
 using MongoDB.Bson.Serialization.Attributes;
-using PloliticalScienceSystemApi.Extension;
+using LibraryManageSystemApi.Extension;
 
-namespace PloliticalScienceSystemApi.Model
+namespace LibraryManageSystemApi.Model
 {
     public class User
     {
@@ -12,7 +12,6 @@ namespace PloliticalScienceSystemApi.Model
         public string? password { get; set; }
 
         public string? salt { get; set; }
-        public string? lib_card_number { get; set; }
         public string? name { get; set; }
         public Sex sex { get; set; }
         public long birth_date { get; set; }
@@ -72,11 +71,11 @@ namespace PloliticalScienceSystemApi.Model
             {
                 return Sex.female;
             }
-            else
+            else 
             {
                 return Sex.male;
             }
-
+           
 
         }
         public long GetBirthFromIdentification_number(string? identification_number)

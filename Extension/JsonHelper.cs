@@ -3,7 +3,7 @@ using Newtonsoft.Json.Serialization;
 using System.Reflection.Metadata;
 using System.Text;
 
-namespace PloliticalScienceSystemApi.Extension
+namespace LibraryManageSystemApi.Extension
 {
     public static class JsonHelper
     {

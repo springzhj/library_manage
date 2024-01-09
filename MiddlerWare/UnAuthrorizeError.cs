@@ -1,4 +1,4 @@
-﻿namespace PloliticalScienceSystemApi.MiddlerWare
+﻿namespace LibraryManageSystemApi.MiddlerWare
 {
     public class UnAuthrorizeError : Exception
     {

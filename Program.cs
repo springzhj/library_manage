@@ -1,11 +1,11 @@
-using PloliticalScienceSystemApi.Extension;
-using PloliticalScienceSystemApi.GlobalSetting;
-using PloliticalScienceSystemApi.Log;
-using PloliticalScienceSystemApi.MongoDbHelper;
-using PloliticalScienceSystemApi.ServiceInject;
+using LibraryManageSystemApi.Extension;
+using LibraryManageSystemApi.GlobalSetting;
+using LibraryManageSystemApi.Log;
+using LibraryManageSystemApi.MongoDbHelper;
+using LibraryManageSystemApi.ServiceInject;
 using System.Text.Json;
 using NLog.Web;
-using PloliticalScienceSystemApi.MiddlerWare;
+using LibraryManageSystemApi.MiddlerWare;
 using Microsoft.Extensions.FileProviders;
 using Dumpify;
 

@@ -1,7 +1,7 @@
-﻿using PloliticalScienceSystemApi.MiddlerWare;
+﻿using LibraryManageSystemApi.MiddlerWare;
 using System.Reflection;
 
-namespace PloliticalScienceSystemApi.ApiRequsetCheck
+namespace LibraryManageSystemApi.ApiRequsetCheck
 {
 
     public static class ParamValidator

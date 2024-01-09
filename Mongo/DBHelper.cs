@@ -1,9 +1,9 @@
 ﻿
 using Dumpify;
-using PloliticalScienceSystemApi.Extension;
-using PloliticalScienceSystemApi.GlobalSetting;
-using PloliticalScienceSystemApi.Log;
-using PloliticalScienceSystemApi.Model;
+using LibraryManageSystemApi.Extension;
+using LibraryManageSystemApi.GlobalSetting;
+using LibraryManageSystemApi.Log;
+using LibraryManageSystemApi.Model;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Core;
@@ -13,7 +13,7 @@ using System.Runtime.CompilerServices;
 
 
 
-namespace PloliticalScienceSystemApi.MongoDbHelper
+namespace LibraryManageSystemApi.MongoDbHelper
 {
     public static class DBHelper
     {

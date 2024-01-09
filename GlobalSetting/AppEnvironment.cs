@@ -1,4 +1,4 @@
-﻿namespace PloliticalScienceSystemApi.GlobalSetting
+﻿namespace LibraryManageSystemApi.GlobalSetting
 {
     public static class AppEnvironment
     {

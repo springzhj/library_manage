@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace PloliticalScienceSystemApi.Extension
+namespace LibraryManageSystemApi.Extension
 {
     public class RSAFileHelper
     {

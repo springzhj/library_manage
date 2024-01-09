@@ -1,4 +1,4 @@
-﻿namespace PloliticalScienceSystemApi.Extension
+﻿namespace LibraryManageSystemApi.Extension
 {
     public class MaskHelper
     {

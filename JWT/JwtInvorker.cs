@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Options;
 using System.Security.Claims;
-using PloliticalScienceSystemApi.Extension;
+using LibraryManageSystemApi.Extension;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 
-namespace PloliticalScienceSystemApi.JwtExtension
+namespace LibraryManageSystemApi.JwtExtension
 {
     public class JwtInvorker
     {

@@ -1,4 +1,4 @@
-namespace PloliticalScienceSystemApi
+namespace LibraryManageSystemApi
 {
     public class WeatherForecast
     {

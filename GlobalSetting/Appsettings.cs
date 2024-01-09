@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration.Json;
 
-namespace PloliticalScienceSystemApi.GlobalSetting
+namespace LibraryManageSystemApi.GlobalSetting
 {
     /// <summary>
     /// appsettings.json操作类

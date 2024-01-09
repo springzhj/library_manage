@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
-using PloliticalScienceSystemApi.GlobalSetting;
-using PloliticalScienceSystemApi.Extension;
+using LibraryManageSystemApi.GlobalSetting;
+using LibraryManageSystemApi.Extension;
 
-namespace PloliticalScienceSystemApi.ServiceInject
+namespace LibraryManageSystemApi.ServiceInject
 {
     public static class AppsettingService
     {

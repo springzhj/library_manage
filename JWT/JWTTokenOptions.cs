@@ -1,4 +1,4 @@
-﻿namespace PloliticalScienceSystemApi.JwtExtension
+﻿namespace LibraryManageSystemApi.JwtExtension
 {
     public class JWTTokenOptions
     {

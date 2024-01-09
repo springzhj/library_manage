@@ -1,8 +1,8 @@
-﻿using PloliticalScienceSystemApi.MiddlerWare;
+﻿using LibraryManageSystemApi.MiddlerWare;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace PloliticalScienceSystemApi.Extension
+namespace LibraryManageSystemApi.Extension
 {
     public class NumberConverter : JsonConverter<long>
     {

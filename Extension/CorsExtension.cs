@@ -1,8 +1,8 @@
 ﻿
 
-using PloliticalScienceSystemApi.GlobalSetting;
+using LibraryManageSystemApi.GlobalSetting;
 
-namespace PloliticalScienceSystemApi.Extension
+namespace LibraryManageSystemApi.Extension
 {
     /// <summary>
     /// 通用跨域扩展

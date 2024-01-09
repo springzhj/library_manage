@@ -1,14 +1,14 @@
-﻿using PloliticalScienceSystemApi.Extension;
-using PloliticalScienceSystemApi.GlobalSetting;
+﻿using LibraryManageSystemApi.Extension;
+using LibraryManageSystemApi.GlobalSetting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.IdentityModel.Tokens;
 using System.Runtime.CompilerServices;
 using System.Security.Claims;
-using PloliticalScienceSystemApi.JwtExtension;
+using LibraryManageSystemApi.JwtExtension;
 
-namespace PloliticalScienceSystemApi.ServiceInject
+namespace LibraryManageSystemApi.ServiceInject
 {
     public static class JWTService
     {

@@ -1,11 +1,11 @@
-﻿using PloliticalScienceSystemApi.Log;
+﻿using LibraryManageSystemApi.Log;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Localization;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 
-namespace PloliticalScienceSystemApi.MiddlerWare
+namespace LibraryManageSystemApi.MiddlerWare
 {
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
     public class ErrorMiddleware

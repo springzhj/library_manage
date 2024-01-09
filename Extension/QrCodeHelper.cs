@@ -1,4 +1,4 @@
-﻿using PloliticalScienceSystemApi.GlobalSetting;
+﻿using LibraryManageSystemApi.GlobalSetting;
 using Dumpify;
 using OfficeOpenXml;
 using OfficeOpenXml.Drawing;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using LicenseContext = OfficeOpenXml.LicenseContext;
 
-namespace PloliticalScienceSystemApi.Extension
+namespace LibraryManageSystemApi.Extension
 {
     public class QrCodeHelper
     {
