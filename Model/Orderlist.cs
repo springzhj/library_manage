@@ -6,6 +6,9 @@ namespace LibraryManageSystemApi.Model
     {
         [BsonElement("_id")]
         public long id { get; set; }
+        public long checklistid { get; set; }
+        public long returnlistid { get; set; }
+
         public string? order_serial_number { get; set; }
         public long order_date { get; set; }
         public string? ISBN { get; set; }

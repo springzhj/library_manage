@@ -25,14 +25,10 @@ namespace LibraryManageSystemApi.MongoDbHelper
             Db = Mongoclient.GetDatabase(Appsettings.app("MongoDb:Database"));
             Db.InitTables(new List<Type>()
             {
-                //typeof(AnswerModel),
-                //typeof(StuGroup),
-                //typeof(GroupRelationship),
-                //typeof(ModuleModel),
-                //typeof(ModelWorkRelationship),
-                //typeof(Sysuser),
-                //typeof(TaskModel),
-                //typeof(Workmodel),
+                typeof(Checklist),
+                typeof(Interviewlist),
+                typeof(Orderlist),
+                typeof(Returnlist),
                 typeof(Unit),
                 typeof(User),
 

@@ -41,6 +41,7 @@ namespace LibraryManageSystemApi.Controllers.Usersys.Apis
         [HttpPost]
         public async Task<Result> enroll([FromBody] UsersysEnrollDto dto)
         {
+            Console.Write("Hello ");
             if (ParamValidator.CheckParamIsValid(dto) == false)
             {
                 throw new InvalidParamError("参数非法");
