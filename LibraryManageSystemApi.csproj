@@ -21,9 +21,4 @@
     <PackageReference Include="ZXing.Net" Version="0.16.9" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\Catalogsys\Apis\" />
-    <Folder Include="Controllers\Catalogsys\Dto\" />
-  </ItemGroup>
-
 </Project>

@@ -1,31 +1,18 @@
 ﻿using LibraryManageSystemApi.ApiRequsetCheck;
-using LibraryManageSystemApi.Extension;
 using LibraryManageSystemApi.GlobalSetting;
 using LibraryManageSystemApi.JwtExtension;
 using LibraryManageSystemApi.Log;
 using LibraryManageSystemApi.MiddlerWare;
 using LibraryManageSystemApi.Model;
 using LibraryManageSystemApi.MongoDbHelper;
-using LibraryManageSystemApi.ServiceInject;
 using LibraryManageSystemApi.Extention;
 using IdGen;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using NLog.Filters;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Security.Claims;
-using DocumentFormat.OpenXml.Wordprocessing;
-using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
-using SharpCompress.Common;
 using LibraryManageSystemApi.Controllers.Interview.Dto;
-using DocumentFormat.OpenXml.Office2010.Excel;
-using DocumentFormat.OpenXml.Bibliography;
+using MongoDB.Driver.Core.Operations;
 
 namespace LibraryManageSystemApi.Controllers.Interview.Apis
 {
@@ -232,6 +219,10 @@ namespace LibraryManageSystemApi.Controllers.Interview.Apis
             {
                 return Result.SuccessError("无此订单").SetData(new { result = false });
             }
+            if (order.status != Orderlist.Status.order)
+            {
+                return Result.SuccessError("订单状态不可修改").SetData(new { result = false });
+            }
             var update = Builders<Orderlist>.Update.Set(s => s.ISBN, dto.ISBN)
             .Set(s => s.title, dto.title)
             .Set(s => s.documen_type, dto.documen_type)
@@ -294,6 +285,10 @@ namespace LibraryManageSystemApi.Controllers.Interview.Apis
             {
                 return Result.SuccessError("无此订单").SetData(new { result = false });
             }
+            if(order.status != Orderlist.Status.order)
+            {
+                return Result.SuccessError("订单状态不可删除").SetData(new { result = false });
+            }
             if (AppEnvironment.UseTransaction)
             {
                 IClientSessionHandle session = await mongoclient.StartSessionAsync();
@@ -340,6 +335,11 @@ namespace LibraryManageSystemApi.Controllers.Interview.Apis
             List<FilterDefinition<Orderlist>> filters = new List<FilterDefinition<Orderlist>>();
             foreach (var item in orderids)
             {
+                var order = await Mongo.DbGetCollection<Orderlist>().Find(Builders<Orderlist>.Filter.Eq(s => s.id, item)).FirstOrDefaultAsync();
+                if (order.status != Orderlist.Status.order)
+                {
+                    return Result.SuccessError("订单状态不可删除").SetData(new { result = false });
+                }
                 filters.Add(Builders<Orderlist>.Filter.Eq(s => s.id, item));
             }
             var f = Builders<Orderlist>.Filter.Or(filters);
@@ -734,7 +734,7 @@ namespace LibraryManageSystemApi.Controllers.Interview.Apis
                
             }
             
-            return Result.Success("获取成功").SetData(new { result = true,returnlists = returnHelperlist, counts = counts });
+            return Result.Success("获取成功").SetData(new { result = true,returnlists = returnHelperlist, counts = returnHelperlist.Count });
         }
     }
     public class ReturnHelper
