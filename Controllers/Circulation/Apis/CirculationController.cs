@@ -21,7 +21,7 @@ using Amazon.SecurityToken.Model;
 
 namespace LibraryManageSystemApi.Controllers.Circulation.Apis
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class CirculationController : ControllerBase
     {
@@ -54,12 +54,13 @@ namespace LibraryManageSystemApi.Controllers.Circulation.Apis
             var userfilter = Builders<User>.Filter.Eq(s => s.id, dto.userid); // 根据特定的 ID 查找记录
             var user = await Mongo.DbGetCollection<User>()
               .Find(userfilter).FirstOrDefaultAsync();
-            if (Appiontmenthelper.can_appoint_number(user) <=0) {
+            if (Appiontmenthelper.can_appoint_number(user) <= 0)
+            {
                 return Result.SuccessError("借阅数量已达上限").SetData(new { result = false });
             }
             else
             {
-                var userupdate = Builders<User>.Update.Set(s => s.appointed_number,user.appointed_number+1);
+                var userupdate = Builders<User>.Update.Set(s => s.appointed_number, user.appointed_number + 1);
                 await Mongo.DbGetCollection<User>().UpdateOneAsync(userfilter, userupdate);
             }
 
@@ -69,7 +70,7 @@ namespace LibraryManageSystemApi.Controllers.Circulation.Apis
               .Find(bookfilter).FirstOrDefaultAsync();
             var bookupdate = Builders<Booklist>.Update.Set(s => s.order_number, book.order_number + 1);
             await Mongo.DbGetCollection<Booklist>().UpdateOneAsync(bookfilter, bookupdate);
-            
+
             Appointmentlist uu = new Appointmentlist();
             uu.id = Idgen.CreateId();
             uu.userid = dto.userid;
@@ -117,16 +118,16 @@ namespace LibraryManageSystemApi.Controllers.Circulation.Apis
         //api/circulation/getappointmentlist 获取预约记录
         [HttpGet]
         // [Authorize(Policy = JWTService.PolicyName, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<Result> getappointmentlist(int pagenumber, int pagecounts, long userid,bool isnofinshed,string keywords = "")
+        public async Task<Result> getappointmentlist(int pagenumber, int pagecounts, long userid, bool isnofinshed, string keywords = "")
         {
             var filter1 = Builders<Appointmentlist>.Filter.Or(
                 Builders<Appointmentlist>.Filter.Regex(s => s.bookname, new BsonRegularExpression($".*{keywords}.*", "i")),
                 Builders<Appointmentlist>.Filter.Regex(s => s.catalog_number, new BsonRegularExpression($".*{keywords}.*", "i"))
                 );
-           var filter = Builders<Appointmentlist>.Filter.And(
-                Builders<Appointmentlist>.Filter.Eq(s => s.userid, userid),
-                filter1
-                );
+            var filter = Builders<Appointmentlist>.Filter.And(
+                 Builders<Appointmentlist>.Filter.Eq(s => s.userid, userid),
+                 filter1
+                 );
             if (isnofinshed)
             {
                 filter = Builders<Appointmentlist>.Filter.And(
@@ -158,13 +159,13 @@ namespace LibraryManageSystemApi.Controllers.Circulation.Apis
             {
                 return Result.SuccessError("无此预约记录").SetData(new { result = false });
             }
-            if (appointmentlist.status !=Appointmentlist.Status.appointed)
+            if (appointmentlist.status != Appointmentlist.Status.appointed)
             {
                 return Result.SuccessError("预约记录状态不可删除").SetData(new { result = false });
             }
 
 
-            var userfilter= Builders<User>.Filter.Eq(s => s.id, appointmentlist.userid);
+            var userfilter = Builders<User>.Filter.Eq(s => s.id, appointmentlist.userid);
             var user = await Mongo.DbGetCollection<User>().Find(userfilter).FirstOrDefaultAsync();
             var userupdate = Builders<User>.Update.Set(s => s.appointed_number, user.appointed_number - 1);
             await Mongo.DbGetCollection<User>().UpdateOneAsync(userfilter, userupdate);
@@ -224,20 +225,20 @@ namespace LibraryManageSystemApi.Controllers.Circulation.Apis
               .Find(Builders<Booklist>.Filter.Eq(s => s.id, appointment.bookid)).FirstOrDefaultAsync();
 
 
-            if (book==null)
+            if (book == null)
             {
                 return Result.SuccessError("书籍不存在").SetData(new { result = false });
             }
             else
             {
-                var userupdate = Builders<Booklist>.Update.Set(s => s.status,Booklist.Status.borrowed)
-                    .Set(s => s.order_number,book.order_number-1);
+                var userupdate = Builders<Booklist>.Update.Set(s => s.status, Booklist.Status.borrowed)
+                    .Set(s => s.order_number, book.order_number - 1);
                 await Mongo.DbGetCollection<Booklist>().UpdateOneAsync(Builders<Booklist>.Filter.Eq(s => s.id, appointment.bookid), userupdate);
             }
 
 
             var appointmentfilter = Builders<Appointmentlist>.Filter.Eq(s => s.id, dto.appointmentid); // 根据特定的 ID 查找记录
-            var appointmentupdate = Builders<Appointmentlist>.Update.Set(s => s.status,Appointmentlist.Status.Borrowed);
+            var appointmentupdate = Builders<Appointmentlist>.Update.Set(s => s.status, Appointmentlist.Status.Borrowed);
             await Mongo.DbGetCollection<Appointmentlist>().UpdateOneAsync(appointmentfilter, appointmentupdate);
             Lendingbookslist uu = new Lendingbookslist();
             uu.id = Idgen.CreateId();
@@ -247,8 +248,8 @@ namespace LibraryManageSystemApi.Controllers.Circulation.Apis
             uu.username = appointment.username;
             uu.bookname = appointment.bookname;
             uu.lendstarttime = AppTimeManager.GetAppTimeStamp();
-            uu.lendendtime = AppTimeManager.GetAppTimeStamp()+ (long)TimeSpan.FromDays(5).TotalMilliseconds;
-            uu.catalog_number= appointment.catalog_number;
+            uu.lendendtime = AppTimeManager.GetAppTimeStamp() + (long)TimeSpan.FromDays(5).TotalMilliseconds;
+            uu.catalog_number = appointment.catalog_number;
             uu.isreturn = false;
             if (AppEnvironment.UseTransaction)
             {
@@ -302,9 +303,9 @@ namespace LibraryManageSystemApi.Controllers.Circulation.Apis
                 );
             if (userid == 0)
             {
-                 filter = Builders<Lendingbookslist>.Filter.And(
-                 filter1
-                 );
+                filter = Builders<Lendingbookslist>.Filter.And(
+                filter1
+                );
                 if (isreturn)
                 {
                     filter = Builders<Lendingbookslist>.Filter.And(
@@ -332,7 +333,7 @@ namespace LibraryManageSystemApi.Controllers.Circulation.Apis
         }
 
         //api/circulation/putbackbook 还书
-        [HttpPost] 
+        [HttpPost]
         public async Task<Result> putbackbook([FromBody] PutbackbookDto dto)
         {
             if (ParamValidator.CheckParamIsValid(dto) == false)
@@ -354,18 +355,19 @@ namespace LibraryManageSystemApi.Controllers.Circulation.Apis
                 var appointupdate = Builders<Appointmentlist>.Update.Set(s => s.status, Appointmentlist.Status.finished);
                 await Mongo.DbGetCollection<Appointmentlist>().UpdateOneAsync(Builders<Appointmentlist>.Filter.Eq(s => s.id, lendbook.appointmentid), appointupdate);
             }
-            
-            if (AppTimeManager.GetAppTimeStamp()>lendbook.lendendtime){
+
+            if (AppTimeManager.GetAppTimeStamp() > lendbook.lendendtime)
+            {
                 //超期处理
                 Overduelist uu = new Overduelist();
-                uu.id =  Idgen.CreateId();
+                uu.id = Idgen.CreateId();
                 uu.lendingbookslistid = lendbook.id;
                 uu.lendstarttime = lendbook.lendstarttime;
                 uu.lendendtime = lendbook.lendendtime;
                 uu.returntime = AppTimeManager.GetAppTimeStamp();
                 uu.userid = lendbook.userid;
-                uu.username= lendbook.username;
-                uu.bookid= lendbook.bookid;
+                uu.username = lendbook.username;
+                uu.bookid = lendbook.bookid;
                 uu.bookname = lendbook.bookname;
                 uu.catalog_number = lendbook.catalog_number;
                 Penaltylist aa = new Penaltylist();
@@ -387,7 +389,7 @@ namespace LibraryManageSystemApi.Controllers.Circulation.Apis
                     await Console.Out.WriteLineAsync($"发生错误：{ex.Message}，发生位置：{ex.StackTrace}");
                     return Result.SuccessError("修改失败").SetData(new { result = false });
                 }
-                
+
             }
             else
             {
@@ -456,7 +458,7 @@ namespace LibraryManageSystemApi.Controllers.Circulation.Apis
             {
                 filter = Builders<Overduelist>.Filter.And(
                 filter1
-                ); 
+                );
             }
             var counts = await Mongo.DbGetCollection<Overduelist>()
             .Find(filter).CountDocumentsAsync();
