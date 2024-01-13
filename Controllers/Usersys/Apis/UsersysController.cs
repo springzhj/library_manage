@@ -57,14 +57,15 @@ namespace LibraryManageSystemApi.Controllers.Usersys.Apis
             uu.account = dto.account;
             uu.password = dto.password;
             if (dto.level == 0)
-            { uu.level = Level.ordinary_student; }
+            { uu.level = Model.User.Level.ordinary_student; }
             else if (dto.level == 2)
-            { uu.level = Level.ordinary_teacher; }
+            { uu.level = Model.User.Level.ordinary_teacher; }
             else if (dto.level == 4)
-            { uu.level = Level.unit_personnel; }
+            { uu.level = Model.User.Level.unit_personnel; }
             uu.identification_number = dto.identification_number;
             uu.sex = uu.GetGenderFromIdentification_number(dto.identification_number);
             uu.birth_date = uu.GetBirthFromIdentification_number(dto.identification_number);
+            uu.appointed_number = 0;
             uu.is_delete = false;
             uu.BuildPassword();
             try

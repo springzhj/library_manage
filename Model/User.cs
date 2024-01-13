@@ -22,7 +22,7 @@ namespace LibraryManageSystemApi.Model
         public string? fax_number { get; set; }
         public string? e_mail { get; set; }
         public string? identification_number { get; set; }
-        public Appointed_number appointed_number { get; set; }
+        public int appointed_number { get; set; }
         public Level level { get; set; }
         public bool is_delete { get; set; }
 
@@ -78,7 +78,7 @@ namespace LibraryManageSystemApi.Model
            
 
         }
-        public long GetBirthFromIdentification_number(string? identification_number)
+        public long GetBirthFromIdentification_number(string identification_number)
         {
             long BirthCode = long.Parse(identification_number.Substring(6, 8));
             string strBirthCode = BirthCode.ToString();
@@ -101,32 +101,30 @@ namespace LibraryManageSystemApi.Model
             return timestamp;
 
         }
+
+        public enum Sex
+        {
+            male = 0,
+            female = 1,
+        }
+        //public enum Birth_date
+        //{
+        //    timestamp,
+        //}
+        public enum Level
+        {
+            ordinary_student = 0,
+            advanced_student = 1,
+            ordinary_teacher = 2,
+            advanced_teacher = 3,
+            unit_personnel = 4,
+            manager = 5,
+        }
     }
 
 
 
-    public enum Sex
-    {
-        male = 0,
-        female = 1,
-    }
-    //public enum Birth_date
-    //{
-    //    timestamp,
-    //}
-    public enum Appointed_number
-    {
-        number,
-    }
-    public enum Level
-    {
-        ordinary_student = 0,
-        advanced_student = 1,
-        ordinary_teacher = 2,
-        advanced_teacher = 3,
-        unit_personnel = 4,
-        manager = 5,
-    }
+
 
 }
 
